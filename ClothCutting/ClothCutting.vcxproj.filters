@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="algorithm">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="algorithm\head">
+      <UniqueIdentifier>{a7827965-0a88-4908-a624-d335da57948a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="algorithm\source">
+      <UniqueIdentifier>{f85e89b9-911e-42c6-a4bd-28c92be0d1aa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="algorithm\problem.cpp">
+      <Filter>algorithm\source</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithm\solver.cpp">
+      <Filter>algorithm\source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="algorithm\problem.h">
+      <Filter>algorithm\head</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithm\solver.h">
+      <Filter>algorithm\head</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

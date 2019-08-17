@@ -252,3 +252,4 @@ ModelManifest.xml
 /Deploy/Log
 /Deploy/log*.csv
 /Lib/gurobi/lib/*.lib
+/Deploy/*.exe
