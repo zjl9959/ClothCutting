@@ -28,5 +28,8 @@
     <ClInclude Include="algorithm\solver.h">
       <Filter>algorithm\head</Filter>
     </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>algorithm</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
