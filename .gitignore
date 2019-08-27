@@ -253,3 +253,4 @@ ModelManifest.xml
 /Deploy/log*.csv
 /Lib/gurobi/lib/*.lib
 /Deploy/*.exe
+/Lib/Clipper/clipper_ver6.4.2
