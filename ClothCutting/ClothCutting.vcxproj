@@ -69,7 +69,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(BoostPath);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(BoostPath);$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -84,10 +89,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(SolutionDir)Deploy\$(TargetFileName)</Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\nlopt\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libnlopt.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -111,21 +121,62 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\nlopt\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libnlopt.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(SolutionDir)Deploy\$(TargetFileName)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Lib\clipper\clipper.cpp" />
+    <ClCompile Include="..\Lib\libnest2d\tests\printer_parts.cpp" />
     <ClCompile Include="algorithm\problem.cpp" />
     <ClCompile Include="algorithm\solver.cpp" />
+    <ClCompile Include="example.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Lib\clipper\clipper.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d.h" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\clipper_polygon.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\geometries.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\common.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits_nfp.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\libnest2d.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizer.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\genetic.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\nlopt_boilerplate.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\simplex.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\subplex.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\optimlib\particleswarm.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\bottomleftplacer.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\nfpplacer.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\placer_boilerplate.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\djd_heuristic.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\filler.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\firstfit.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\selection_boilerplate.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\bigint.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\boost_alg.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\metaloop.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rational.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotcalipers.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotfinder.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\tests\printer_parts.h" />
+    <ClInclude Include="..\Lib\libnest2d\tools\benchmark.h" />
+    <ClInclude Include="..\Lib\libnest2d\tools\libnfporb\libnfporb.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\tools\nfp_svgnest.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\tools\nfp_svgnest_glue.hpp" />
+    <ClInclude Include="..\Lib\libnest2d\tools\svgtools.hpp" />
+    <ClInclude Include="..\Lib\nlopt\include\nlopt.h" />
+    <ClInclude Include="..\Lib\nlopt\include\nlopt.hpp" />
     <ClInclude Include="algorithm\problem.h" />
     <ClInclude Include="algorithm\solver.h" />
     <ClInclude Include="Common.h" />
