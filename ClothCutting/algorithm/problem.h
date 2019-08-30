@@ -1,15 +1,17 @@
 #pragma once
 #ifndef CLOTH_CUTTING_PROBLEM_H
 #define CLOTH_CUTTING_PROBLEM_H
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include "../Common.h"
+
 namespace cloth_cutting {
 
 struct Coordinate {
 public:
-	double x, y;
+	Coord x, y;
 };
 
 // 零件
@@ -28,17 +30,17 @@ public:
 class Defect {
 public:
     Coordinate center; // 圆心
-    int radius; // 半径
+    Length radius; // 半径
 };
 
 // 面料
 class Plate {
 public:
 	String plateIndex; // 面料号
-	int length, width; // 长和宽
+	Length length, width; // 长和宽
 	List<Defect> defects; // 面料的瑕疵
-	int minGap; // 零件间的最小间距
-	int minPadding; // 最小边距
+	Length minGap; // 零件间的最小间距
+	Length minPadding; // 最小边距
 };
 
 // 输入
@@ -54,7 +56,7 @@ public:
 };
 
 // 输出
-class OutPut {
+class Output {
 public:
     void save(List<Item> &items);
 };

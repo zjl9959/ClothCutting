@@ -135,10 +135,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Lib\clipper\clipper.cpp" />
+    <ClCompile Include="..\Lib\libnest2d\example.cpp" />
     <ClCompile Include="..\Lib\libnest2d\tests\printer_parts.cpp" />
     <ClCompile Include="algorithm\problem.cpp" />
     <ClCompile Include="algorithm\solver.cpp" />
-    <ClCompile Include="example.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +180,9 @@
     <ClInclude Include="algorithm\problem.h" />
     <ClInclude Include="algorithm\solver.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="data\basePath.hpp" />
+    <ClInclude Include="utils\boostUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -109,7 +109,7 @@ String Input::Trim(String & str) {
     return str;
 }
 
-void OutPut::save(List<Item>& items) {
+void Output::save(List<Item>& items) {
     String solutionFolder = "./Solution/";
     std::ofstream ofs(solutionFolder + "dataA.csv");
     for (auto i = 0; i < items.size(); ++i) {
