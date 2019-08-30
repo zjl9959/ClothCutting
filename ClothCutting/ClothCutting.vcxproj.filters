@@ -29,6 +29,15 @@
     <Filter Include="Lib\libnest2d\tools">
       <UniqueIdentifier>{b1e4970a-08b0-4823-90fc-6753c9b6b826}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lib\libnest2d\include">
+      <UniqueIdentifier>{fe02adde-e1f9-4082-9b31-0925f0e18dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{7003ed4d-adef-4113-923e-f083b6bb9cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{a41fab37-a09f-47f7-88de-5c772bc7aa4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorithm\problem.cpp">
@@ -41,9 +50,11 @@
     <ClCompile Include="..\Lib\clipper\clipper.cpp">
       <Filter>Lib\clipper</Filter>
     </ClCompile>
-    <ClCompile Include="example.cpp" />
     <ClCompile Include="..\Lib\libnest2d\tests\printer_parts.cpp">
       <Filter>Lib\libnest2d\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lib\libnest2d\example.cpp">
+      <Filter>Lib\libnest2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,89 +64,8 @@
     <ClInclude Include="algorithm\solver.h">
       <Filter>algorithm\head</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>algorithm</Filter>
-    </ClInclude>
     <ClInclude Include="..\Lib\clipper\clipper.hpp">
       <Filter>Lib\clipper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d.h">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\common.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits_nfp.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\libnest2d.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizer.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\clipper_polygon.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\geometries.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\genetic.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\nlopt_boilerplate.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\simplex.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\subplex.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\optimlib\particleswarm.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\bottomleftplacer.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\nfpplacer.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\placer_boilerplate.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\djd_heuristic.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\filler.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\firstfit.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\selection_boilerplate.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\bigint.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\boost_alg.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\metaloop.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rational.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotcalipers.hpp">
-      <Filter>Lib\libnest2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotfinder.hpp">
-      <Filter>Lib\libnest2d</Filter>
     </ClInclude>
     <ClInclude Include="..\Lib\nlopt\include\nlopt.h">
       <Filter>Lib\nlopt</Filter>
@@ -160,6 +90,92 @@
     </ClInclude>
     <ClInclude Include="..\Lib\libnest2d\tools\svgtools.hpp">
       <Filter>Lib\libnest2d\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\bigint.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\boost_alg.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\bottomleftplacer.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\clipper_polygon.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\common.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\djd_heuristic.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\filler.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\genetic.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits_nfp.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\libnest2d.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizer.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\subplex.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\simplex.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\selection_boilerplate.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotfinder.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rotcalipers.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\rational.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\placer_boilerplate.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\optimlib\particleswarm.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\optimizers\nlopt\nlopt_boilerplate.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\placers\nfpplacer.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\utils\metaloop.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d.h">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\geometry_traits.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\backends\clipper\geometries.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnest2d\include\libnest2d\selections\firstfit.hpp">
+      <Filter>Lib\libnest2d\include</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\boostUtils.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="data\basePath.hpp">
+      <Filter>data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

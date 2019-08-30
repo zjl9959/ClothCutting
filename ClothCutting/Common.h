@@ -12,22 +12,22 @@
 #include <map>
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 
 namespace cloth_cutting {
 
 // zero-based consecutive integer identifier.
 using ID = int;
-// the unit of width and height.
-using Length = int;
 // the unit of x and y coordinates.
-using Coord = Length;
+using Coord = double;
+// 题目给出的面料长宽、瑕疵半径、间距等属性为整型
+using Length = int;
+// 几何运算产生的结果为浮点型
+using Distance = double;
 // the unit of elapsed computational time.
 using Duration = int;
 // number of neighborhood moves in local search.
 using Iteration = int;
-
-using Wave = int;
-// the No. of wavelength
 
 template<typename T>
 using List = std::vector<T>;
@@ -37,6 +37,9 @@ using HashSet = std::unordered_set<Key>;
 
 template<typename T>
 using Set = std::set<T>;
+
+template<typename  Key, typename Val>
+using HashMap = std::unordered_map<Key, Val>;
 
 template<typename Key, typename Val>
 using Map = std::map<Key, Val>;
