@@ -14,12 +14,13 @@ void Solver::preprocess() {
 	}
 
 	// item -> piece，平移多边形包络左下角到坐标原点处，减少坐标数值
+	ID piece_index = 0;
 	pieces.reserve(input.items.size() * 2);
-	for (auto each_item : input.items) {
-		int amount = each_item.amount;
+	for (int i = 0; i < input.items.size(); ++i) {
+		int amount = input.items[i].amount;
 		while (amount) {
 			polygon_t piece;
-			for (auto each_xy : each_item.raw_coords) {
+			for (auto each_xy : input.items[i].raw_coords) {
 				bg::append(piece.outer(), point_t(each_xy.x, each_xy.y));
 			}
 			box_t envelope = bg::return_envelope<box_t>(piece);
@@ -28,10 +29,11 @@ void Solver::preprocess() {
 			//auto offsetX2 = envelope.min_corner().x();
 			//auto offsetY2 = envelope.min_corner().y();
 			piece.clear();
-			for (auto each_xy : each_item.raw_coords) {
+			for (auto each_xy : input.items[i].raw_coords) {
 				bg::append(piece.outer(), point_t(each_xy.x - offsetX, each_xy.y - offsetY));
 			}
 			pieces.push_back(piece);
+			pieceIdMap[piece_index++] = i;
 			--amount;
 		}
 	}
