@@ -21,7 +21,7 @@ protected:
     Input &input;
 	List<box_t> bins; // ÃæÁÏ
 	List<polygon_t> pieces; // Áã¼ş
-	HashMap<ID, ID> idMap; // idÓ³Éä£¬idMap[piece_id]  = item_id
+	HashMap<ID, ID> pieceIdMap; // idÓ³Éä£¬idMap[piece_id]  = item_id
 	Config config;
 };
 
