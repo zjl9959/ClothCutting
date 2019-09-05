@@ -45,7 +45,7 @@ using box_t = bg::model::box<point_t>;
 // 环（逆时针，起点=终点）
 using ring_t = bg::model::ring<point_t, false, true>;
 
-// 线段
+// 线段（坐标点对）
 using segment_t = bg::model::segment<point_t>;
 
 }

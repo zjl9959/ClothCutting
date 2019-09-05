@@ -22,7 +22,7 @@ public:
 	int amount; // 零件个数
 	List<Coordinate> raw_coords; // 零件的原始轮廓坐标
 	List<Coordinate> res_coords; // 结果中零件的轮廓坐标
-	List<int> rotateAngles; // 可旋转的角度
+	List<Angle> rotateAngles; // 可旋转的角度
 	String plateIndex; // 面料号
 };
 

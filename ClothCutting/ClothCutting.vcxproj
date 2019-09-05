@@ -139,6 +139,8 @@
     <ClCompile Include="..\Lib\libnest2d\tests\printer_parts.cpp" />
     <ClCompile Include="algorithm\problem.cpp" />
     <ClCompile Include="algorithm\solver.cpp" />
+    <ClCompile Include="data\nfpPair.cpp" />
+    <ClCompile Include="data\piece.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,8 +183,10 @@
     <ClInclude Include="algorithm\solver.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="data\basePath.hpp" />
+    <ClInclude Include="data\nfpPair.h" />
+    <ClInclude Include="data\piece.h" />
     <ClInclude Include="utils\boostUtils.hpp" />
+    <ClInclude Include="utils\clipperUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

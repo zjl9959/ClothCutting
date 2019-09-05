@@ -24,6 +24,8 @@ using Coord = double;
 using Length = int;
 // 几何运算产生的结果为浮点型
 using Distance = double;
+// angle
+using Angle = int;
 // the unit of elapsed computational time.
 using Duration = int;
 // number of neighborhood moves in local search.

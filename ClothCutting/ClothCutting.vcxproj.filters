@@ -32,11 +32,11 @@
     <Filter Include="Lib\libnest2d\include">
       <UniqueIdentifier>{fe02adde-e1f9-4082-9b31-0925f0e18dbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="util">
-      <UniqueIdentifier>{7003ed4d-adef-4113-923e-f083b6bb9cf1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="data">
       <UniqueIdentifier>{a41fab37-a09f-47f7-88de-5c772bc7aa4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{7003ed4d-adef-4113-923e-f083b6bb9cf1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="..\Lib\libnest2d\example.cpp">
       <Filter>Lib\libnest2d</Filter>
+    </ClCompile>
+    <ClCompile Include="data\piece.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\nfpPair.cpp">
+      <Filter>data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,11 +176,17 @@
       <Filter>Lib\libnest2d\include</Filter>
     </ClInclude>
     <ClInclude Include="utils\boostUtils.hpp">
-      <Filter>util</Filter>
+      <Filter>utils</Filter>
     </ClInclude>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="data\basePath.hpp">
+    <ClInclude Include="data\piece.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\clipperUtils.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="data\nfpPair.h">
       <Filter>data</Filter>
     </ClInclude>
   </ItemGroup>

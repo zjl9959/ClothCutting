@@ -4,7 +4,10 @@
 
 #include "problem.h"
 #include "../Config.h"
+#include "../data/piece.h"
+#include "../data/nfpPair.h"
 #include "../utils/boostUtils.hpp"
+#include "../utils/clipperUtils.hpp"
 
 namespace cloth_cutting {
 
@@ -15,12 +18,17 @@ public:
 	void run();
 
 private:
-	void preprocess();
+	void preprocess(List<Piece>& out_pieces);
+	void cleanAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
+	void offsetAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
+	List<ID> placeCheck(const box_t &bin);
+	Angle rotateCheck(const box_t &bin, const Piece &piece);
+	void greedyWorker(const box_t &bin, const List<ID>& candidate_index);
 
 protected:
     Input &input;
 	List<box_t> bins; // 面料
-	List<polygon_t> pieces; // 零件
+	List<Piece> pieces; // 零件
 	HashMap<ID, ID> pieceIdMap; // id映射，idMap[piece_id]  = item_id
 	Config config;
 };

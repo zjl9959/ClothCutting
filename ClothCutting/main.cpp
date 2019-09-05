@@ -10,12 +10,12 @@ int main(int argc, char *argv[]) {
 		input.items[i].res_coords = input.items[i].raw_coords;
 	}
 
-	// TODO:Ìí¼ÓÊµÏÖ
 	Solver sol(input);
 	sol.run();
 
 	Output output;
 	output.save(input.items);
     
+	system("Pause");
     return 0;
 }
