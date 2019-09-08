@@ -189,5 +189,11 @@
     <ClInclude Include="data\nfpPair.h">
       <Filter>data</Filter>
     </ClInclude>
+    <ClInclude Include="utils\myUtils.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\libnfporb.hpp">
+      <Filter>Lib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(SolutionDir)Deploy\$(TargetFileName)</Command>
@@ -121,7 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib;$(SolutionDir)Lib\clipper;$(SolutionDir)Lib\libnest2d;$(SolutionDir)Lib\libnest2d\include;$(SolutionDir)Lib\nlopt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -177,6 +177,7 @@
     <ClInclude Include="..\Lib\libnest2d\tools\nfp_svgnest.hpp" />
     <ClInclude Include="..\Lib\libnest2d\tools\nfp_svgnest_glue.hpp" />
     <ClInclude Include="..\Lib\libnest2d\tools\svgtools.hpp" />
+    <ClInclude Include="..\Lib\libnfporb.hpp" />
     <ClInclude Include="..\Lib\nlopt\include\nlopt.h" />
     <ClInclude Include="..\Lib\nlopt\include\nlopt.hpp" />
     <ClInclude Include="algorithm\problem.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="data\piece.h" />
     <ClInclude Include="utils\boostUtils.hpp" />
     <ClInclude Include="utils\clipperUtils.hpp" />
+    <ClInclude Include="utils\myUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

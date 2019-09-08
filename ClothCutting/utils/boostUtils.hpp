@@ -23,6 +23,7 @@ using point_base = bg::model::point<T, dimension, bg::cs::cartesian>;
 // 二维坐标点
 using point_t = bg::model::d2::point_xy<T>;
 const point_t originPoint(0, 0);
+const point_t invalidPoint(-1, -1);
 
 // 曲线
 using linestring_t = bg::model::linestring<point_t>;
@@ -47,6 +48,12 @@ using ring_t = bg::model::ring<point_t, false, true>;
 
 // 线段（坐标点对）
 using segment_t = bg::model::segment<point_t>;
+
+// 旋转多边形一定角度
+static void rotatePolygon(const polygon_t &poly, polygon_t &rotate_poly, Angle angle) {
+	bg::strategy::transform::rotate_transformer<bg::degree, int, 2, 2> rotate_strategy(angle);
+	bg::transform(poly, rotate_poly, rotate_strategy);
+}
 
 }
 

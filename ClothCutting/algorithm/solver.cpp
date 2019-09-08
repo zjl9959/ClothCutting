@@ -12,11 +12,8 @@ void Solver::run(){
 	offsetAll(clean_pieces, this->pieces);
 	for (auto iter = bins.begin(); iter != bins.end(); ++iter) {
 		List<ID> candidate_index = placeCheck(*iter);
+		greedyWorker(*iter, candidate_index);
 	}
-
-	
-
-
 }
 
 void Solver::preprocess(List<Piece>& out_pieces) {
@@ -105,10 +102,8 @@ List<ID> Solver::placeCheck(const box_t &bin) {
 				break;
 			}
 		}
+	}
 	return candidate_index;
-}
-
-
 }
 
 /*
@@ -121,10 +116,9 @@ Angle Solver::rotateCheck(const box_t & bin, const Piece & piece) {
 	auto seed = std::chrono::system_clock::now().time_since_epoch().count();
 	std::shuffle(candidate_angles.begin(), candidate_angles.end(), std::default_random_engine(seed));
 	for (Angle each_angle : candidate_angles) {
-		bg::strategy::transform::rotate_transformer<bg::degree, int, 2, 2> rotate(each_angle);
-		polygon_t rotated_poly;
-		bg::transform(piece.poly, rotated_poly, rotate);
-		box_t envelope = bg::return_envelope<box_t>(rotated_poly);
+		polygon_t rotate_poly;
+		rotatePolygon(piece.poly, rotate_poly, each_angle);
+		box_t envelope = bg::return_envelope<box_t>(rotate_poly);
 		auto width = bg::get<bg::max_corner, 0>(envelope) - bg::get<bg::min_corner, 0>(envelope);
 		auto height = bg::get<bg::max_corner, 1>(envelope) - bg::get<bg::min_corner, 1>(envelope);
 		if (width < bin_width && height < bin_height) {
@@ -147,22 +141,16 @@ void Solver::greedyWorker(const box_t &bin, const List<ID>& candidate_index) {
 		(*iter).rotation = rotateCheck(bin, *iter);
 	}
 	
-	// 如果在nfpCache里没找到nfpKey 则添加进nfpPairs
 	List<NfpPair> nfp_pairs;
 	for (int i = 0; i < candidate_pieces.size(); ++i) {
 		nfp_pairs.emplace_back(bin, candidate_pieces[i]);
 		for (int j = 0; j < i; ++j) {
-			Piece placed = candidate_pieces[j];
-			NfpKey keyed = new NfpKey(placed.getId(), part.getId(), false, rotations.get(j), rotations.get(i));
-			nfp_pairs.emplace_back();
+			nfp_pairs.emplace_back(candidate_pieces[j], candidate_pieces[i]);
 		}
 	}
-
-	// 第一次nfpCache为空 ，nfpCache存的是nfpKey所对应的两个polygon所形成的Nfp( List<NestPath> )
-	List<ParallelData> generatedNfp;
-	for (NfpPair nfpPair : nfp_pairs) {
+	// 生成 nfp
+	for (NfpPair &nfpPair : nfp_pairs) {
 		ParallelData data = nfpGenerator(nfpPair, config);
-		generatedNfp.add(data);
 	}
 	for (int i = 0; i < generatedNfp.size(); i++) {
 		ParallelData Nfp = generatedNfp.get(i);
