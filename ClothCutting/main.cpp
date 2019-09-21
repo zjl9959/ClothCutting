@@ -1,5 +1,5 @@
-#include "algorithm/solver.h"
 #include "algorithm/problem.h"
+#include "algorithm/solver.h"
 
 int main(int argc, char *argv[]) {
 	using namespace cloth_cutting;

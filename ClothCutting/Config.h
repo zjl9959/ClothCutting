@@ -8,8 +8,10 @@ namespace cloth_cutting {
 	
 struct Config {
 	// 全局变量
-	static constexpr int scaleRate = 10; // 缩放倍数
-	static constexpr double curveTolerance = 0.02; // 曲线误差（暂不考虑误差）
+	// double 转 clipper_cInt, 将坐标变为整数的最小缩放倍数，所有clipper函数调用，注意乘倍数
+	static constexpr int scaleRate = 10; 
+	// 曲线宽恕，删除与边距离 curveTolerance 以内的坐标点，如果凸多边形会造成面积减少
+	static constexpr double curveTolerance = 0.02; 
 
 	Length minGap;       // 间距
 	Length minPadding;   // 边距

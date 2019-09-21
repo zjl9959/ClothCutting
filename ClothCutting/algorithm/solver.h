@@ -6,8 +6,8 @@
 #include "../Config.h"
 #include "../data/piece.h"
 #include "../data/nfpPair.h"
-#include "../utils/boostUtils.hpp"
-#include "../utils/clipperUtils.hpp"
+#include "../data/result.h"
+#include "../utils/myUtils.hpp"
 
 namespace cloth_cutting {
 
@@ -22,8 +22,9 @@ private:
 	void cleanAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	void offsetAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	List<ID> placeCheck(const box_t &bin);
-	Angle rotateCheck(const box_t &bin, const Piece &piece);
+	bool rotateCheck(const box_t &bin, Piece &piece);
 	void greedyWorker(const box_t &bin, const List<ID>& candidate_index);
+	Result placeWorker(const box_t &bin, const List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache);
 
 protected:
     Input &input;

@@ -4,6 +4,7 @@
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/geometries.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include "../Common.h"
 
 namespace cloth_cutting {
@@ -31,6 +32,10 @@ using linestring_t = bg::model::linestring<point_t>;
 // 多边形（逆时针，起点=终点，包括0个或者多个内环 inner rings）
 using polygon_t = bg::model::polygon<point_t, false, true>;
 
+// 环（逆时针，起点=终点）
+//using ring_t = bg::model::ring<point_t, false, true>;
+using ring_t = polygon_t::ring_type;
+
 // 点集合
 using multi_point_t = bg::model::multi_point<point_t>;
 
@@ -43,15 +48,12 @@ using multi_polygon_t = bg::model::multi_polygon<polygon_t>;
 // 矩形
 using box_t = bg::model::box<point_t>;
 
-// 环（逆时针，起点=终点）
-using ring_t = bg::model::ring<point_t, false, true>;
-
 // 线段（坐标点对）
 using segment_t = bg::model::segment<point_t>;
 
 // 旋转多边形一定角度
 static void rotatePolygon(const polygon_t &poly, polygon_t &rotate_poly, Angle angle) {
-	bg::strategy::transform::rotate_transformer<bg::degree, int, 2, 2> rotate_strategy(angle);
+	bg::strategy::transform::rotate_transformer<bg::degree, double, 2, 2> rotate_strategy(angle);
 	bg::transform(poly, rotate_poly, rotate_strategy);
 }
 

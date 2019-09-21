@@ -10,7 +10,6 @@
 namespace cloth_cutting {
 
 struct Coordinate {
-public:
 	Coord x, y;
 };
 
