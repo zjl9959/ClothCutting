@@ -1,4 +1,3 @@
-#include "algorithm/problem.h"
 #include "algorithm/solver.h"
 
 int main(int argc, char *argv[]) {
@@ -10,6 +9,7 @@ int main(int argc, char *argv[]) {
 
 	Solver sol(input);
 	sol.run();
+	sol.saveOutput();
 
 	Output output;
 	output.save(input.items);

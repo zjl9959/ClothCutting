@@ -16,6 +16,7 @@ public:
     Solver(Input &_input) : input(_input) {};
     ~Solver() {};
 	void run();
+	void saveOutput();
 
 private:
 	void preprocess(List<Piece>& out_pieces);
@@ -23,8 +24,8 @@ private:
 	void offsetAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	List<ID> placeCheck(const box_t &bin);
 	bool rotateCheck(const box_t &bin, Piece &piece);
-	void greedyWorker(const box_t &bin, const List<ID>& candidate_index);
-	Result placeWorker(const box_t &bin, const List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache);
+	Result greedyWorker(const box_t &bin, const List<ID>& candidate_index);
+	Result placeWorker(const box_t &bin, List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache);
 
 protected:
     Input &input;

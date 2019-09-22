@@ -19,6 +19,27 @@ void Solver::run(){
 	}
 }
 
+void Solver::saveOutput() {
+	for (auto & each_piece : pieces) {
+		auto &each_item = input.items[pieceIdMap[each_piece.id]];
+		each_item.res_coords.clear();
+		each_item.res_coords.reserve(each_item.raw_coords.size());
+		for (auto &each_xy : each_item.raw_coords) {
+			// 初赛暂时只考虑 0 和 180 旋转
+			if (each_piece.rotation == 180) {
+				each_item.res_coords.push_back(
+					{ each_piece.offsetX - each_xy.x, each_piece.offsetY - each_xy.y }
+				);
+			}
+			else {
+				each_item.res_coords.push_back(
+					{ each_piece.offsetX + each_xy.x, each_piece.offsetY + each_xy.y }
+				);
+			}
+		}
+	}
+}
+
 void Solver::preprocess(List<Piece>& out_pieces) {
 	// plate -> bin
 	bins.reserve(input.plates.size());
@@ -136,7 +157,7 @@ bool Solver::rotateCheck(const box_t & bin, Piece & piece) {
 /*
 * 一次贪心迭代
 */
-void Solver::greedyWorker(const box_t &bin, const List<ID>& candidate_index) {
+Result Solver::greedyWorker(const box_t &bin, const List<ID>& candidate_index) {
 	List<Piece> candidate_pieces;
 	for (ID index : candidate_index) {
 		candidate_pieces.push_back(pieces[index]);
@@ -164,13 +185,13 @@ void Solver::greedyWorker(const box_t &bin, const List<ID>& candidate_index) {
 	}
 	HashMap<String, polygon_t> nfp_cache;
 	for (auto &each_pair : nfp_pairs) { nfp_cache[each_pair.nfp_key] = each_pair.nfp; }
-	placeWorker(bin, candidate_pieces, nfp_cache);
+	return placeWorker(bin, candidate_pieces, nfp_cache);
 }
 
 /*
 * 将候选物品 pieces 放到 bin 上
 */
-Result Solver::placeWorker(const box_t &bin, const List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache) {
+Result Solver::placeWorker(const box_t &bin, List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache) {
 	List<List<Vector>> all_placed_vectors;
 	double fitness = 0;
 	double bin_area = bg::area(bin);
@@ -179,7 +200,7 @@ Result Solver::placeWorker(const box_t &bin, const List<Piece>& pieces, const Ha
 		List<Piece> placed_pieces; // 已放置的零件
 		List<Vector> placed_vectors; // 对应 vector
 		++fitness;
-		double min_width = DistanceMax;
+		double minwidth = DistanceMax;
 
 		for (auto &curr_piece : pieces) {
 #pragma region NfpExistChecker
@@ -204,17 +225,16 @@ Result Solver::placeWorker(const box_t &bin, const List<Piece>& pieces, const Ha
 				continue; 
 			}
 #pragma endregion NfpExistChecker
-
+			Vector position;
 #pragma region FirstPiece
 			// 放置第一块零件
 			if (placed_pieces.empty()) {
-				Vector position;
 				for (auto &nfp_point : bin_nfp.outer()) {
 					if (nfp_point.x - curr_piece.poly.outer[0].x < position.x) {
 						// 寻找最左边的位置,摆放坐标和原始坐标之间转换用矢量
 						position = Vector(
-							nfp_point.x - curr_piece.poly.outer[0].x,
-							nfp_point.y - curr_piece.poly.outer[0].y,
+							nfp_point.x() - curr_piece.poly.outer()[0].x(),
+							nfp_point.y() - curr_piece.poly.outer()[0].y(),
 							curr_piece.id,
 							curr_piece.rotation
 						);
@@ -276,7 +296,7 @@ Result Solver::placeWorker(const box_t &bin, const List<Piece>& pieces, const Ha
 			}
 
 			/*
-			* clear clipperFinalNfp
+			* clean clipperFinalNfp
 			*/
 			CleanPolygons(clipperFinalNfp, 0.0001 * Config::scaleRate);
 			clipperFinalNfp.erase(
@@ -290,10 +310,66 @@ Result Solver::placeWorker(const box_t &bin, const List<Piece>& pieces, const Ha
 			}
 #pragma endregion ClipperExecute
 
-		}
-	}
+			List<ring_t> final_nfp;
+			for (auto & each_path : clipperFinalNfp) {
+				final_nfp.push_back(clipper2BoostRing(each_path));
+			}
+			double minarea = 0;
+			double minX = DistanceMax;
+			for (auto & nfp : final_nfp) {
+				if (bg::area(nfp) < 2) { continue; }
 
-	return Result();
+				for (auto & nfp_point : nfp) {
+					polygon_t allpoints;
+					for (int m = 0; m < placed_pieces.size(); ++m) {
+						for (auto &each_point : placed_pieces[m].poly.outer()) {
+							bg::append(allpoints.outer(), point_t(each_point.x() + placed_vectors[m].x,
+																  each_point.y() + placed_vectors[m].y));
+						}
+					}
+					Vector shift_vector(
+						nfp_point.x() - curr_piece.poly.outer()[0].x(),
+						nfp_point.y() - curr_piece.poly.outer()[0].y(),
+						curr_piece.id,
+						curr_piece.rotation
+					);
+					shift_vector.nfp = clipperCombinedNfp;
+					
+					// curr_piece 坐标偏移
+					for (auto & each_point : curr_piece.poly.outer()) {
+						bg::append(allpoints.outer(), point_t(each_point.x() + shift_vector.x,
+															  each_point.y() + shift_vector.y));
+					}
+					box_t envelope = bg::return_envelope<box_t>(allpoints);
+					auto width = bg::get<bg::max_corner, 0>(envelope) - bg::get<bg::min_corner, 0>(envelope);
+					auto height = bg::get<bg::max_corner, 1>(envelope) - bg::get<bg::min_corner, 1>(envelope);
+					double area = width;
+					if (minarea == 0 || area < minarea || 
+						almostEqual(minarea, area) && (minX == 0 || shift_vector.x < minX)
+					) {
+						minarea = area;
+						minwidth = width;
+						position = shift_vector;
+						minX = shift_vector.x;
+					}
+				}
+			}
+			placed_pieces.push_back(curr_piece);
+			placed_vectors.push_back(position);
+		}
+		fitness += minwidth / bin_area;
+		// 已放置的清除
+		for (auto & placed_piece : placed_pieces) {
+			pieces.erase(std::find(pieces.begin(), pieces.end(), placed_piece));
+		}
+		if (placed_vectors.size() > 0) { all_placed_vectors.push_back(placed_vectors); }
+		else { break; }
+	}
+	// there were paths that couldn't be placed
+	fitness += 2 * pieces.size();
+	//一般情况下，如果都在一块面料上完成的话，这里使用可以 -1，直接就是 minwidth / binarea
+	fitness -= 1;
+	return Result(all_placed_vectors, fitness, pieces, bin_area);
 }
 
 }

@@ -11,6 +11,7 @@ public:
 	Piece() : rotation(0), offsetX(0), offsetY(0) {}
 	void cleanPiece(Piece &res_piece) const;
 	void offsetPiece(List<Piece>& res_pieces, double offset) const;
+	bool operator ==(const Piece &a);
 	
 public:
 	ID id;

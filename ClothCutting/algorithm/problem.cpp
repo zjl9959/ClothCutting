@@ -112,6 +112,7 @@ String Input::Trim(String & str) {
 void Output::save(List<Item>& items) {
     String solutionFolder = "./Solution/";
     std::ofstream ofs(solutionFolder + "dataA.csv");
+	ofs << "下料批次号,零件号,面料号,零件外轮廓线坐标" << std::endl; // 表头
     for (auto i = 0; i < items.size(); ++i) {
         ofs << items[i].batchIndex << "," << items[i].itemIndex << "," << items[i].plateIndex << ",";
         ofs << "\"[";

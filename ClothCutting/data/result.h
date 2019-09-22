@@ -2,6 +2,7 @@
 #ifndef CLOTH_CUTTING_RESULT_H
 #define CLOTH_CUTTING_RESULT_H
 
+#include "piece.h"
 #include "../utils/myUtils.hpp"
 
 namespace cloth_cutting {
@@ -21,9 +22,14 @@ public:
 class Result {
 public:
 	Result() {}
+	Result(List<List<Vector>>& _placements, double &_fitness, List<Piece>& _pieces, double &_area)
+		: placements(_placements), fitness(_fitness), pieces(_pieces), area(_area) {}
 
 public:
-
+	List<List<Vector>> placements;
+	double fitness;
+	List<Piece> pieces;
+	double area;
 };
 
 }

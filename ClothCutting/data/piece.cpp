@@ -57,4 +57,17 @@ namespace cloth_cutting {
 		}
 	}
 
+
+	/*
+	* ÖØÐ´ == 
+	*/
+	bool Piece::operator ==(const Piece &a) {
+		return this->id == a.id
+			&& this->offsetX == a.offsetX
+			&& this->offsetY == a.offsetY
+			&& this->rotation == a.rotation
+			&& bg::equals(this->poly, a.poly);
+	}
+
+
 }
