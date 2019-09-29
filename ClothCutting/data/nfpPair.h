@@ -8,8 +8,8 @@ namespace cloth_cutting {
 
 static String getNfpKey(const Piece &A, const Piece &B) {
 	return std::to_string(A.id) 
+		+ '_' + std::to_string(A.rotation)
 		+ '_' + std::to_string(B.id) 
-		+ '_' + std::to_string(A.rotation) 
 		+ '_' + std::to_string(B.rotation);
 }
 
@@ -17,13 +17,16 @@ static String getNfpKey(const Piece &A) {
 	return std::to_string(A.id) + '_' + std::to_string(A.rotation);
 }
 
+enum RelationType { InnerFitPolygon, NoFitPolygon };
+
 class NfpPair {
 public:
-	NfpPair(const Piece &a, const Piece &b) : A(a), B(b) { nfp_key = getNfpKey(A, B); }
-	NfpPair(const Piece &a, const box_t &b) : A(a), bin(b) { nfp_key = getNfpKey(A); }
+	NfpPair(const Piece &a, const Piece &b) : A(a), B(b), relation(RelationType::NoFitPolygon) { nfp_key = getNfpKey(A, B); }
+	NfpPair(const Piece &a, const box_t &b) : A(a), bin(b), relation(RelationType::InnerFitPolygon) { nfp_key = getNfpKey(A); }
 	void nfpPairGenerator();
 	
 public:
+	RelationType relation;
 	box_t bin;
 	Piece A;
 	Piece B;

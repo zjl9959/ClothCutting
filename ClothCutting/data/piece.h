@@ -9,9 +9,10 @@ namespace cloth_cutting {
 class Piece {
 public:
 	Piece() : rotation(0), offsetX(0), offsetY(0) {}
+	void zeroPiece(Piece &res_piece) const;
 	void cleanPiece(Piece &res_piece) const;
-	void offsetPiece(List<Piece>& res_pieces, double offset) const;
-	bool operator ==(const Piece &a);
+	void offsetPiece(Piece &res_piece, double offset) const;
+	inline bool operator ==(const Piece &a) { return this->id == a.id; };
 	
 public:
 	ID id;

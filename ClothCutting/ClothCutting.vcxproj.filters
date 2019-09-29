@@ -47,9 +47,6 @@
     <ClCompile Include="data\piece.cpp">
       <Filter>data\source</Filter>
     </ClCompile>
-    <ClCompile Include="data\result.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm\problem.h">
@@ -81,7 +78,7 @@
     <ClInclude Include="data\piece.h">
       <Filter>data\head</Filter>
     </ClInclude>
-    <ClInclude Include="data\result.h">
+    <ClInclude Include="data\vector.hpp">
       <Filter>data\head</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,7 +36,7 @@ public:
 class Plate {
 public:
 	String plateIndex; // 面料号
-	Length length, width; // 长和宽
+	Length width, height; // 长和宽
 	List<Defect> defects; // 面料的瑕疵
 	Length minGap; // 零件间的最小间距
 	Length minPadding; // 最小边距

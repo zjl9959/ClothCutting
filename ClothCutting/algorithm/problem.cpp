@@ -61,8 +61,8 @@ void Input::readPlates(std::ifstream & fin) {
     std::getline(sin, plate.plateIndex, ',');
     String temp;
     std::getline(sin, temp, ',');
-    plate.length = atoi(temp.substr(0, temp.find('*')).c_str());
-    plate.width = atoi(temp.substr(temp.find('*') + 1, temp.size()).c_str());
+    plate.width = atoi(temp.substr(0, temp.find('*')).c_str());
+    plate.height = atoi(temp.substr(temp.find('*') + 1, temp.size()).c_str());
 
     std::getline(sin, temp, '\"');
     if (temp != "") {// 说明不存在瑕疵

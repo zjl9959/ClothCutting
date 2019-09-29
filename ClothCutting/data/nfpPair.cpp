@@ -63,11 +63,31 @@ namespace cloth_cutting {
 	* Éú³É nfp
 	*/
 	void NfpPair::nfpPairGenerator() {
-		libnfp::polygon_t pA = boost2NfpPolygon(A.poly);
-		libnfp::polygon_t pB = boost2NfpPolygon(B.poly);
-		libnfp::nfp_t nfp = libnfp::generateNFP(pA, pB);
-		write_svg("nfp.svg", { pA, pB }, nfp);
-		this->nfp = nfpRings2BoostPolygon(nfp);
+		if (relation == RelationType::NoFitPolygon) {
+			libnfp::polygon_t pA = boost2NfpPolygon(A.poly);
+			libnfp::polygon_t pB = boost2NfpPolygon(B.poly);
+			libnfp::nfp_t nfp = libnfp::generateNFP(pA, pB);
+			//write_svg("nfp.svg", { pA, pB }, nfp);
+			this->nfp = nfpRings2BoostPolygon(nfp);
+		}
+		else if(relation == RelationType::InnerFitPolygon){
+			box_t envelope;
+			getEnvelope(A.poly, envelope);
+			auto & refer_point = A.poly.outer()[0];
+			bg::append(this->nfp.outer(), point_t(bin.min_corner().x() - envelope.min_corner().x() + refer_point.x(), 
+				bin.min_corner().y() - envelope.min_corner().y() + refer_point.y()));
+			bg::append(this->nfp.outer(), point_t(bin.max_corner().x() - envelope.max_corner().x() + refer_point.x(),
+				bin.min_corner().y() - envelope.min_corner().y() + refer_point.y()));
+			bg::append(this->nfp.outer(), point_t(bin.max_corner().x() - envelope.max_corner().x() + refer_point.x(),
+				bin.max_corner().y() - envelope.max_corner().y() + refer_point.y()));
+			bg::append(this->nfp.outer(), point_t(bin.min_corner().x() - envelope.min_corner().x() + refer_point.x(),
+				bin.max_corner().y() - envelope.max_corner().y() + refer_point.y()));
+			bg::append(this->nfp.outer(), point_t(bin.min_corner().x() - envelope.min_corner().x() + refer_point.x(),
+				bin.min_corner().y() - envelope.min_corner().y() + refer_point.y()));
+		}
+		else {
+			std::cout << "Wrong RelationType!" << std::endl;
+		}	
 	}
 
 }

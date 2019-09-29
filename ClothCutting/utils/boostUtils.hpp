@@ -51,10 +51,26 @@ using box_t = bg::model::box<point_t>;
 // 线段（坐标点对）
 using segment_t = bg::model::segment<point_t>;
 
-// 旋转多边形一定角度
+// 多边形平移
+static void translatePolygon(const polygon_t &poly, polygon_t &translate_poly, T x, T y) {
+	bg::strategy::transform::translate_transformer<double, 2, 2> translate_strategy(x, y);
+	bg::transform(poly, translate_poly, translate_strategy);
+}
+
+// 多边形绕原点旋转一定角度
 static void rotatePolygon(const polygon_t &poly, polygon_t &rotate_poly, Angle angle) {
 	bg::strategy::transform::rotate_transformer<bg::degree, double, 2, 2> rotate_strategy(angle);
 	bg::transform(poly, rotate_poly, rotate_strategy);
+}
+
+// 求多边形的包络矩形
+using rectangle_t = std::pair<T, T>;
+static rectangle_t getEnvelope(const polygon_t &poly, box_t &envelope) {
+	bg::envelope(poly, envelope);
+	return { 
+		bg::get<bg::max_corner, 0>(envelope) - bg::get<bg::min_corner, 0>(envelope), // width
+		bg::get<bg::max_corner, 1>(envelope) - bg::get<bg::min_corner, 1>(envelope)  // height
+	};
 }
 
 }

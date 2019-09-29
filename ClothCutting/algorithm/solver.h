@@ -6,7 +6,7 @@
 #include "../Config.h"
 #include "../data/piece.h"
 #include "../data/nfpPair.h"
-#include "../data/result.h"
+#include "../data/vector.hpp"
 #include "../utils/myUtils.hpp"
 
 namespace cloth_cutting {
@@ -19,13 +19,15 @@ public:
 	void saveOutput();
 
 private:
-	void preprocess(List<Piece>& out_pieces);
+	void preprocess(List<Piece>& origin_pieces);
+	void zeroAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	void cleanAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	void offsetAll(const List<Piece>& in_pieces, List<Piece>& out_pieces);
 	List<ID> placeCheck(const box_t &bin);
 	bool rotateCheck(const box_t &bin, Piece &piece);
-	Result greedyWorker(const box_t &bin, const List<ID>& candidate_index);
-	Result placeWorker(const box_t &bin, List<Piece>& pieces, const HashMap<String, polygon_t>& nfp_cache);
+	void greedyWorker(const box_t &bin, const List<ID>& candidate_index);
+	double placeWorker(const box_t &bin, const HashMap<String, polygon_t>& nfp_cache, 
+		List<Piece>& candidate_pieces, List<Piece>& placed_pieces, List<Vector>& placed_vectors);
 
 protected:
     Input &input;

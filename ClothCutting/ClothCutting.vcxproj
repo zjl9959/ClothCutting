@@ -141,7 +141,6 @@
     <ClCompile Include="algorithm\solver.cpp" />
     <ClCompile Include="data\nfpPair.cpp" />
     <ClCompile Include="data\piece.cpp" />
-    <ClCompile Include="data\result.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +152,7 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="data\nfpPair.h" />
     <ClInclude Include="data\piece.h" />
-    <ClInclude Include="data\result.h" />
+    <ClInclude Include="data\vector.hpp" />
     <ClInclude Include="utils\boostUtils.hpp" />
     <ClInclude Include="utils\clipperUtils.hpp" />
     <ClInclude Include="utils\myUtils.hpp" />
