@@ -61,8 +61,8 @@ void Input::readPlates(std::ifstream & fin) {
     std::getline(sin, plate.plateIndex, ',');
     String temp;
     std::getline(sin, temp, ',');
-    plate.length = atoi(temp.substr(0, temp.find('*')).c_str());
-    plate.width = atoi(temp.substr(temp.find('*') + 1, temp.size()).c_str());
+    plate.width = atoi(temp.substr(0, temp.find('*')).c_str());
+    plate.height = atoi(temp.substr(temp.find('*') + 1, temp.size()).c_str());
 
     std::getline(sin, temp, '\"');
     if (temp != "") {// 说明不存在瑕疵
@@ -112,6 +112,7 @@ String Input::Trim(String & str) {
 void Output::save(List<Item>& items) {
     String solutionFolder = "./Solution/";
     std::ofstream ofs(solutionFolder + "dataA.csv");
+	ofs << "下料批次号,零件号,面料号,零件外轮廓线坐标" << std::endl; // 表头
     for (auto i = 0; i < items.size(); ++i) {
         ofs << items[i].batchIndex << "," << items[i].itemIndex << "," << items[i].plateIndex << ",";
         ofs << "\"[";

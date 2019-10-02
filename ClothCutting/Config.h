@@ -7,16 +7,17 @@
 namespace cloth_cutting {
 	
 struct Config {
-	Length minGap;       // 间距
-	Length minPadding;   // 边距
-	int populationSize;  // 种群代数
-	double mutationRate; // 突变率
+	// 全局变量
+	// double 转 clipper_cInt, 将坐标变为整数的最小缩放倍数，clipper 函数的调用都需要乘该倍数
+	static constexpr int scaleRate = 10; 
+	// 曲线宽恕，删除与边距离 curveTolerance 以内的坐标点，如果凸多边形会造成面积减少
+	static constexpr double curveTolerance = 0.025; 
 
-	Config(Length mg = 5, Length mp = 0, int ps = 10, double mr = 0.1) :
-		minGap(mg), minPadding(mp), populationSize(ps), mutationRate(mr) {}
+	Length minGap;     // 间距
+	Length minPadding; // 边距
 
+	Config(Length mg = 5, Length mp = 0) : minGap(mg), minPadding(mp) {}
 };
-
 
 }
 

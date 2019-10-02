@@ -13,21 +13,19 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <limits>
 
 namespace cloth_cutting {
 
 // zero-based consecutive integer identifier.
 using ID = int;
-// the unit of x and y coordinates.
+// 坐标类型（用于 boost_geometry, Clipper 坐标类型为 cInt）
 using Coord = double;
+const auto DistanceMax = (std::numeric_limits<Coord>::max)();
 // 题目给出的面料长宽、瑕疵半径、间距等属性为整型
 using Length = int;
-// 几何运算产生的结果为浮点型
-using Distance = double;
-// the unit of elapsed computational time.
-using Duration = int;
-// number of neighborhood moves in local search.
-using Iteration = int;
+// 旋转角度 [0, 90, 180, 270, 360]
+using Angle = int;
 
 template<typename T>
 using List = std::vector<T>;
@@ -45,22 +43,6 @@ template<typename Key, typename Val>
 using Map = std::map<Key, Val>;
 
 using String = std::string;
-
-enum 
-{
-	MaxDistance = (1 << 28)
-};
-
-enum 
-{
-	InvalidID = -1
-};
-
-class FileExtension {
-public:
-    static String protobuf() { return String(".pb"); }
-    static String json() { return String(".json"); }
-};
 
 }
 
