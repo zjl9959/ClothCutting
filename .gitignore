@@ -5,8 +5,7 @@
 /Deploy/Instance/*.csv
 /Deploy/Solution/*.csv
 /Deploy/*.exe
-Lib/libnest2d/
-Lib/nlopt/
+Lib/boost*
 Docs/Paper/
 
 # User-specific files

@@ -14,9 +14,6 @@
     <Filter Include="Lib">
       <UniqueIdentifier>{33930911-8e32-4196-9886-573ce4c4033f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lib\clipper">
-      <UniqueIdentifier>{6a7a617c-c577-4475-aae0-f8fa5e9c1db1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="data">
       <UniqueIdentifier>{a41fab37-a09f-47f7-88de-5c772bc7aa4e}</UniqueIdentifier>
     </Filter>
@@ -29,6 +26,9 @@
     <Filter Include="data\source">
       <UniqueIdentifier>{36b97fd8-6e90-4af1-aca2-31cee1c2a434}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lib\clipper">
+      <UniqueIdentifier>{7be34e10-15d5-4f11-afda-75994c553846}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorithm\problem.cpp">
@@ -38,14 +38,14 @@
       <Filter>algorithm\source</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\Lib\clipper\clipper.cpp">
-      <Filter>Lib\clipper</Filter>
-    </ClCompile>
     <ClCompile Include="data\nfpPair.cpp">
       <Filter>data\source</Filter>
     </ClCompile>
     <ClCompile Include="data\piece.cpp">
       <Filter>data\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lib\clipper\clipper.cpp">
+      <Filter>Lib\clipper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,17 +55,11 @@
     <ClInclude Include="algorithm\solver.h">
       <Filter>algorithm\head</Filter>
     </ClInclude>
-    <ClInclude Include="..\Lib\clipper\clipper.hpp">
-      <Filter>Lib\clipper</Filter>
-    </ClInclude>
     <ClInclude Include="utils\boostUtils.hpp">
       <Filter>utils</Filter>
     </ClInclude>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="utils\clipperUtils.hpp">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\Lib\libnfporb.hpp">
       <Filter>Lib</Filter>
     </ClInclude>
@@ -80,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="data\vector.hpp">
       <Filter>data\head</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\clipperUtils.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\clipper\clipper.hpp">
+      <Filter>Lib\clipper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
