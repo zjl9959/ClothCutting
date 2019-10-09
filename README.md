@@ -6,9 +6,10 @@
 ## 环境依赖
 
 - Microsoft Visual Studio 2017
-- [Boost Geometry 1.65.1](http://www.boost.org/doc/libs/1_65_1/libs/geometry/doc/html/index.html)：header-only-library 无需编译，需配置环境变量`BoostPath = path\to\boost_1_65_1`
-- [Clipper](http://www.angusj.com/delphi/clipper.php)：附加包含目录已追踪
-- [libnfporb](https://github.com/martinhansdk/libnfporb)：用于生成 nfp 的 header-only-library，附加包含目录已追踪
+- `Lib/`
+  - [Boost Geometry 1.65.1](http://www.boost.org/doc/libs/1_65_1/libs/geometry/doc/html/index.html)：header-only-library，附加包含目录已追踪，下载 [boost.zip](https://github.com/zjl9959/ClothCutting/releases) 并解压至 `Lib/` 目录
+  - [Clipper](http://www.angusj.com/delphi/clipper.php)：附加包含目录已追踪
+  - [libnfporb](https://github.com/martinhansdk/libnfporb)：用于生成 nfp 的 header-only-library，附加包含目录已追踪
 - Cmake
 
 
